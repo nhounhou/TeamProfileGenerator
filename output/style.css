@@ -1,0 +1,43 @@
+.header {
+    background-color: #e97979;
+    color: white;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 24px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin: 10px 30px;
+}
+
+.manager1, .engineer1, .intern1 {
+    color: white;
+    font-weight: bolder;
+    font-style: italic;
+    text-align: center;
+    font-size: 18px;
+    width: 200px;
+    height: 100px;
+    margin-top: 5px;
+    margin-left: 50px;
+    display: block;
+}
+
+.manager1 {
+    background-color: #28c6ee;
+}
+
+.engineer1 {
+    background-color: #12af7b;
+}
+
+.intern1 {
+    background-color: #e9d45b;
+    color: black;
+}
+
+.content {
+    background-color:  #d4f5d48a;
+    margin-left: 50px;
+    width: 200px;
+    padding-left: 10px;
+}
