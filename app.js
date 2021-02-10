@@ -86,12 +86,12 @@ function addMember(member) {
             HTMLdata=`<div class="row">
     <div class='col'>
         <div class='manager1'>
-            <p>${member.name}</p>
+            <p>${member.getName()}</p>
             <p><i class="fas fa-street-view"></i> manager</p>
         </div>
         <div class='content'>
-            <p>Id: ${member.id}</p><hr>
-            <p>Email: ${member.email}</p><hr>
+            <p>Id: ${member.getId()}</p><hr>
+            <p>Email: ${member.getEmail()}</p><hr>
             <p>Office #: ${member.getOfficeNumber()}</p>
         </div>
     </div>
@@ -100,12 +100,12 @@ function addMember(member) {
         case 'Engineer':
             HTMLdata=`<div class='col-md-2'>
     <div class='engineer1'>
-        <p>${member.name}</p>
+        <p>${member.getName()}</p>
         <p><i class="fas fa-calculator"></i> engineer</p>
     </div>
     <div class='content'>
-        <p>Id: ${member.id}</p><hr>
-        <p>Email: ${member.email}</p><hr>
+        <p>Id: ${member.getId()}</p><hr>
+        <p>Email: ${member.getEmail()}</p><hr>
         <p>Github : ${member.getGithub()}</p>
     </div>
 </div>`
@@ -113,12 +113,12 @@ function addMember(member) {
         case 'Intern':
             HTMLdata=`<div class='col-md-2'>
     <div class='intern1'>
-        <p>${member.name}</p>
+        <p>${member.getName()}</p()>
         <p><i class="fas fa-school"></i> intern</p>
     </div>
     <div class='content'>
-        <p>Id: ${member.id}</p><hr>
-        <p>Email: ${member.email}</p><hr>
+        <p>Id: ${member.getId()}</p><hr>
+        <p>Email: ${member.getEmail()}</p>()<hr>
         <p>School : ${member.getSchool()}</p>
     </div>
 </div>`
