@@ -10,6 +10,7 @@ Node.js command-line application that takes in information about employees on a 
 - [Initial Test Command](#initial-test-command)
 - [Results](#results)
 - [Screen Shot](#screen-shot)
+    - [Test Results](#test-results)
 
 # User Strory
 AS A manager  
@@ -55,3 +56,5 @@ npm test
 The file generated is `TeamProfile.html` in the `output` folder.
 
 # Screen Shot
+### Test Results  
+![test results](./images/test-results.jpg)

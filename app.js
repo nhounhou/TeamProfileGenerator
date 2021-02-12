@@ -1,34 +1,39 @@
 const fs = require('fs');
-const inquirer = require('inquirer');
+const { prompt } = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-let team=[];
-
+let team = [];
+let newMember = {};
 function buildTeam(){
-    inquirer.prompt([
+    prompt([
         {
             type: 'input',
-            message: 'What is the Team Member"s Name?',
+            message: 'What is the Team Member\'s Name?',
             name: 'Name'
         },
         {
             type: 'input',
-            message: 'What is the Team Member"s Employee ID?',
+            message: 'What is the Team Member\'s Employee ID?',
             name: 'ID'
         },
         {
             type: 'input',
-            message: 'What is the Team Member"s Email Address?',
+            message: 'What is the Team Member\'s Email Address?',
             name: 'Email'
         },
         {
             type: 'list',
-            message: 'What is the Team Member"s Position?',
+            message: 'What is the Team Member\'s Position?',
             choices: ['Manager', 'Engineer', 'Intern'],
             name: 'Position'
         },
     ]).then(reponse => {
+        // console.log('First set of response: '+reponse);
+        newMember['name']=reponse.Name;
+        newMember['id']=reponse.ID;
+        newMember['email']=reponse.Email;
+        newMember['role']=reponse.Position;
         let addInfo='';
         switch (reponse.Position) {
             case 'Manager':
@@ -41,10 +46,10 @@ function buildTeam(){
                 addInfo='School Name?';
                 break;
         }
-        inquirer.prompt([
+        prompt([
             {
                 type: 'input',
-                message: `What is the Team Member"s ${addInfo}`,
+                message: `What is the Team Member\'s ${addInfo}`,
                 name: 'Info'
             },
             {
@@ -54,78 +59,108 @@ function buildTeam(){
                 name: 'moreMember'
             }
         ]).then(repondre => {
+            //newMember[info]=repondre.Info;
             let myMember;
             switch (reponse.Position) {
                 case 'Manager':
-                    myMember = new Manager(reponse.name, reponse.id,reponse.email,repondre.Info);
+                    myMember = new Manager(newMember.name, newMember.id, newMember.email,repondre.Info);
                     break;
                 case 'Engineer':
-                    myMember = new Engineer(reponse.name, reponse.id,reponse.email,repondre.Info);
+                    myMember = new Engineer(newMember.name, newMember.id, newMember.email,repondre.Info);
                     break;
                 case 'Intern':
-                    myMember = new Intern(reponse.name, reponse.id,reponse.email,repondre.Info);
+                    myMember = new Intern(newMember.name, newMember.id, newMember.email,repondre.Info);
                     break;
             }
             if (repondre.moreMember === 'Yes') {
-                addMember(myMember);
+                // console.log('adding:'+myMember);
+                team.push(myMember);
                 buildTeam();
             } else {
+                // console.log('closing with:'+myMember);
+                team.push(myMember);
                 closeHTML();
             }
         });
-        team.push(reponse);
+        //team.push(reponse);
 
     });
+    // console.log(team);
 };
 
 function addMember(member) {
-    let HTMLdata;
+    let mgrData=`<div class="row">
+    
+    `;
+    let engData=`<div class="row">
+    
+    `;
+    let intData=`<div class="row">
+    
+    `;
 
-    switch (member.getRole()) {
-        case 'Manager':
-            HTMLdata=`<div class="row">
-    <div class='col'>
-        <div class='manager1'>
-            <p>${member.getName()}</p>
-            <p><i class="fas fa-street-view"></i> manager</p>
+    for (i=0;i<member.length;i++){
+        // console.log(member[i]);
+        switch (member[i].getRole()) {
+            case 'Manager':
+                mgrData += `
+        <div class='col'>
+            <div class='manager1'>
+                <p>${member[i].getName()}</p>
+                <p><i class="fas fa-street-view"></i> manager</p>
+            </div>
+            <div class='content'>
+                <p>Id: ${member[i].getId()}</p><hr>
+                <p>Email: ${member[i].getEmail()}</p><hr>
+                <p>Office #: ${member[i].getOfficeNumber()}</p>
+            </div>
+        </div>
+    `            
+                break;
+            case 'Engineer':
+                engData += `<div class='col-md-2'>
+        <div class='engineer1'>
+            <p>${member[i].getName()}</p>
+            <p><i class="fas fa-calculator"></i> engineer</p>
         </div>
         <div class='content'>
-            <p>Id: ${member.getId()}</p><hr>
-            <p>Email: ${member.getEmail()}</p><hr>
-            <p>Office #: ${member.getOfficeNumber()}</p>
+            <p>Id: ${member[i].getId()}</p><hr>
+            <p>Email: ${member[i].getEmail()}</p><hr>
+            <p>Github : ${member[i].getGithub()}</p>
         </div>
     </div>
-</div>`            
-            break;
-        case 'Engineer':
-            HTMLdata=`<div class='col-md-2'>
-    <div class='engineer1'>
-        <p>${member.getName()}</p>
-        <p><i class="fas fa-calculator"></i> engineer</p>
-    </div>
-    <div class='content'>
-        <p>Id: ${member.getId()}</p><hr>
-        <p>Email: ${member.getEmail()}</p><hr>
-        <p>Github : ${member.getGithub()}</p>
-    </div>
-</div>`
-            break;
-        case 'Intern':
-            HTMLdata=`<div class='col-md-2'>
-    <div class='intern1'>
-        <p>${member.getName()}</p()>
-        <p><i class="fas fa-school"></i> intern</p>
-    </div>
-    <div class='content'>
-        <p>Id: ${member.getId()}</p><hr>
-        <p>Email: ${member.getEmail()}</p>()<hr>
-        <p>School : ${member.getSchool()}</p>
-    </div>
-</div>`
-            break;
-    }
+    `
+                break;
+            case 'Intern':
+                intData += `<div class='col-md-2'>
+        <div class='intern1'>
+            <p>${member[i].getName()}</p()>
+            <p><i class="fas fa-school"></i> intern</p>
+        </div>
+        <div class='content'>
+            <p>Id: ${member[i].getId()}</p><hr>
+            <p>Email: ${member[i].getEmail()}</p>()<hr>
+            <p>School : ${member[i].getSchool()}</p>
+        </div>
+    `
+                break;
+        }
+        
+        //     
+    };
+    mgrData += `</div>
     
-    fs.appendFileSync('./output/TeamProfile.html',HTMLdata);    
+    `;
+    engData += `</div>
+    
+    `;
+    intData += `</div>
+    
+    `;
+
+    fs.appendFileSync('./output/TeamProfile.html',mgrData);
+    fs.appendFileSync('./output/TeamProfile.html',engData);
+    fs.appendFileSync('./output/TeamProfile.html',intData);
 };
 
 function startHTML() {
@@ -152,13 +187,14 @@ function startHTML() {
 };
 
 function closeHTML() {
-const HTMLdata=`</div>
+    addMember(team);
+    const HTMLdata = `</div>
 </div>
 <div class='footer'></div>
 </body>
 </html>`;
 
-fs.appendFileSync('./output/TeamProfile.html',HTMLdata);
+    fs.appendFileSync('./output/TeamProfile.html',HTMLdata);
 };
 
 startHTML();
