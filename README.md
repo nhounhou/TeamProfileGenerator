@@ -8,9 +8,12 @@ Node.js command-line application that takes in information about employees on a 
 - [Installation](#installation)
 - [Launch the Application](#launch-the-application)
 - [Initial Test Command](#initial-test-command)
+- [My Approach](#my-approach)
 - [Results](#results)
 - [Screen Shot](#screen-shot)
     - [Test Results](#test-results)
+    - [Video Demonstration](#Video-demonstration)
+    - [Link to deploy team profile page](#link-to-deploy-team-profile-page)
 
 # User Strory
 AS A manager  
@@ -52,9 +55,23 @@ node app.js
 npm test
 ```
 
+# My Approach
+The presentation of the team have to have a sense of structure, or hierarchy.  
+So I'm presenting the team member in a row. Each row representing a role within the team.  
+As you will see in the video demonstration, I'm entering the team member in any order.
+That is why I used an array variable to store the team data.  
+I'm only building the html file only after the team has been completely build.  
+And to do so, I'm using 3 strings variable for each role (`mgrData`, `engData` and `intData`). I'm looping thru the team data array and add a team member in the appropriate html role variable.  
+And at the end I writting and concatenating all the html strings variable, which is minimising the repetitive use of the fs methods writeFileSync or appendFileSync.
+
 # Results
 The file generated is `TeamProfile.html` in the `output` folder.
 
 # Screen Shot
 ### Test Results  
 ![test results](./images/test-results.jpg)
+### Video demonstration
+![Demo](./images/TeamProfile.gif)
+### Link to deploy team profile page
+[Team Profile link](https://nhounhou.github.io/TeamProfileGenerator/output/TeamProfile.html)
+![Team Profile Page](./images/TeamProfileGen.jpg)

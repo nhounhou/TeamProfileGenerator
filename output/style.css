@@ -1,12 +1,14 @@
 .header {
     background-color: #e97979;
+    border: 3px solid #3a0d6d;
+    border-radius: 5px;
     color: white;
     font-weight: bolder;
     text-align: center;
-    font-size: 24px;
+    font-size: 30px;
     padding-top: 30px;
     padding-bottom: 30px;
-    margin: 10px 30px;
+    margin: 10px 50px;
 }
 
 .manager1, .engineer1, .intern1 {
@@ -16,7 +18,7 @@
     text-align: center;
     font-size: 18px;
     width: 200px;
-    height: 100px;
+    height: 75px;
     margin-top: 5px;
     margin-left: 50px;
     display: block;
@@ -24,20 +26,28 @@
 
 .manager1 {
     background-color: #28c6ee;
+    border: 2px solid #0c09b1;
+    border-radius: 5px;
 }
 
 .engineer1 {
     background-color: #12af7b;
+    border: 2px solid #375225;
+    border-radius: 5px;
 }
 
 .intern1 {
     background-color: #e9d45b;
     color: black;
+    border: 2px solid #773907;
+    border-radius: 5px;
 }
 
 .content {
     background-color:  #d4f5d48a;
+    border: 1px solid black;
     margin-left: 50px;
     width: 200px;
     padding-left: 10px;
+    padding-bottom: 10px;
 }

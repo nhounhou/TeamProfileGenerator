@@ -111,7 +111,7 @@ function addMember(member) {
             </div>
             <div class='content'>
                 <p>Id: ${member[i].getId()}</p><hr>
-                <p>Email: ${member[i].getEmail()}</p><hr>
+                <p>Email: <a href="mailto:${member[i].getEmail()}">${member[i].getEmail()}</a></p><hr>
                 <p>Office #: ${member[i].getOfficeNumber()}</p>
             </div>
         </div>
@@ -125,8 +125,8 @@ function addMember(member) {
         </div>
         <div class='content'>
             <p>Id: ${member[i].getId()}</p><hr>
-            <p>Email: ${member[i].getEmail()}</p><hr>
-            <p>Github : ${member[i].getGithub()}</p>
+            <p>Email: <a href="mailto:${member[i].getEmail()}">${member[i].getEmail()}</a></p><hr>
+            <p>Github: <a href="http://github.com/${member[i].getGithub()}">${member[i].getGithub()}</a></p>
         </div>
     </div>
     `
@@ -139,9 +139,10 @@ function addMember(member) {
         </div>
         <div class='content'>
             <p>Id: ${member[i].getId()}</p><hr>
-            <p>Email: ${member[i].getEmail()}</p>()<hr>
+            <p>Email: <a href="mailto:${member[i].getEmail()}">${member[i].getEmail()}</a></p><hr>
             <p>School : ${member[i].getSchool()}</p>
         </div>
+    </div>
     `
                 break;
         }
